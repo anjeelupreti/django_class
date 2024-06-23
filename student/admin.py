@@ -1,5 +1,5 @@
 from django.contrib import admin
-from student.models import BroadwayStudent,StudentClass, BroadwayTeacher
+from student.models import BroadwayStudent,BroadwayClass, BroadwayTeacher
 
 
 # admin.site.register(BroadwayStudent)
@@ -15,7 +15,7 @@ class StudentTeacherAdmin(admin.ModelAdmin):
     list_display = ['id','name','address','phone','email']
     search_fields=['name','phone''email']
 
-@admin.register(StudentClass)
+@admin.register(BroadwayClass)
 class StudentClassAdmin(admin.ModelAdmin):
     list_display = ['id','name','section','teacher',]
     search_fields=['name','section']

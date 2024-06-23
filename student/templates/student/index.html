@@ -20,7 +20,7 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
-
+  <a href="{% url 'create_student' %}"> Add Student </a>
 <h2>HTML Table</h2>
 
 <table>
@@ -31,6 +31,7 @@ tr:nth-child(even) {
     <th>Email</th>
     <th>Phone</th>
     <th>Teacher</th>
+    <th>Action</th>
   </tr>
   {% for i in data %}
   <tr>
@@ -40,6 +41,8 @@ tr:nth-child(even) {
     <td>{{i.email}}</td>
     <td>{{i.phone}}</td>
     <td>{{i.student_class.teacher}}</td>
+    <td><a href="{% url 'edit_student' i.id %}"> Edit</a> | <a href="{% url 'delete_student' i.id %}"> Delete</a> </td>
+
 
   </tr>
   {% endfor %}

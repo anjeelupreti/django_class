@@ -9,7 +9,7 @@ class BroadwayTeacher(models.Model):
     def __str__(self):
         return f'{self.name}'
 
-class StudentClass(models.Model):
+class BroadwayClass(models.Model):
     name = models.CharField(
         verbose_name="Class Name",
         max_length=30,
@@ -37,7 +37,7 @@ class BroadwayStudent(models.Model):
     address = models.CharField(max_length=33)
     phone = models.IntegerField(unique=True)
     email = models.EmailField(unique=True)
-    student_class = models.ForeignKey(StudentClass, on_delete=models.SET_NULL, null=True, blank=True)
+    student_class = models.ForeignKey(BroadwayClass, on_delete=models.SET_NULL, null=True, blank=True)
     
     def __str__(self):
         return self.name
