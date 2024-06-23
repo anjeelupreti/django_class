@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404,Http404
 from student.models import BroadwayStudent, BroadwayClass
 from django.http import HttpResponse
 from student.forms import BroadwayClassForm, BroadwayStudentForm
@@ -53,6 +53,19 @@ def edit_class(request, id):
 def delete_class(request, id):
     BroadwayClass.objects.get(id=id).delete()
     return redirect('/student/class')
+
+def class_students(request, id):
+    try:
+        class_instance = BroadwayClass.objects.get(id=id)
+        class_students = BroadwayStudent.objects.filter(student_class=class_instance)
+    except BroadwayClass.DoesNotExist:
+        raise Http404("Class does not exist")
+    
+    context = {
+        "data": class_students,
+    }
+    return render(request, 'class/view.html', context)
+
 
 # for student 
 def create_student(request):
