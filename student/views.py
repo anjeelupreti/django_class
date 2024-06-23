@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404,Http404
+from django.views.generic.list import ListView
 from student.models import BroadwayStudent, BroadwayClass
 from django.http import HttpResponse
 from student.forms import BroadwayClassForm, BroadwayStudentForm
@@ -103,3 +104,10 @@ def edit_student(request, id):
 def delete_student(request, id):
     BroadwayStudent.objects.get(id=id).delete()
     return redirect('/student/fetch')
+
+
+class StudentView(ListView):
+    model=BroadwayStudent
+    template_name='student/index.html'
+    context_object_name='data'
+    

@@ -10,13 +10,15 @@ from student.views import (
     create_student,
     edit_student,
     delete_student,
+    StudentView,
     
     
 )
 
 urlpatterns = [
-    path('fetch/', fetch_student, name='fetch-student'),
-    path('class/',list_class, name='list-class'),  
+    path('fetch/', fetch_student, name='fetch_student'),
+    path('view/', StudentView.as_view(), name='view_student'),
+    path('class/',list_class, name='list_class'),  
     path('class/create',create_class,name="create_class"),
     path('class/edit/<id>',edit_class,name="edit_class"),
     path('class/students/<id>/', class_students, name='class_students'),
